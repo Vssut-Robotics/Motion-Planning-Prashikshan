@@ -11,4 +11,6 @@ Consisting 6 Tasks:
 5. When we do a maze solving or complex line following, we need to count the number of nodes. A node is defined as a region over which all the IR sensors give reading 0 i.e. a node is a black surface and if it is a node, all the sensors lie on black surface. 
 6. You might have ideas about maze solving and wall following. It needs real knowledge on algorithms for solving them. There are many types of algorithms, some of them are Graphs, DFS and BFS, shortest path algorithms(Dijkstra algorithm). Workout on how these are used in finding shortest path and on other algorithms used for the same cause. Revisit the concepts of Arrays and pointers as they play vital role in these algorithms. 
 
+# Note: You can search from Internet, Google, Youtube or any other source as per your choice. 
+
 # VSSUT ROBOTICS
