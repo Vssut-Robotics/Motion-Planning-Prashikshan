@@ -2,7 +2,7 @@
 
 ## Learning motion planning and algos
 
-Consisting 4 Tasks:
+Consisting 6 Tasks:
 
 1. Installation
 2. To study about Rotary Encoders in detail.
