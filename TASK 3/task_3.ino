@@ -15,6 +15,7 @@ volatile int right_counter = 0; //counter variable for right motor
 
 void setup() 
 {
+  serial.begin(3600);
   pinMode(leftmotor, OUTPUT);
   pinMode(rightmotor, OUTPUT);
 
@@ -57,12 +58,12 @@ void loop()
 
 }
 
-void blinkleft() 
+void blinkleft() //interrupts
 {
   left_counter++; // left_counter is incremented by 1 when interrupt occurs in LEFT motor
 }
 
-void blinkright() 
+void blinkright() //interrupts
 {
   right_counter++; // right_counter is incremented by 1 when interrupt occurs in RIGHT motor
 }
