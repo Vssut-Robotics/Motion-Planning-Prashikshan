@@ -1,0 +1,35 @@
+float v[3][1]={  };        //this is the velocity vector the rorbot will follow
+float M[4][3]={{-0.35,0.35,0.25},{-0.35,-0.35,0.25},{0.35,-0.35,0.25},{0.35,0.35,0.25}};     //inverse kinamatics Matrix by Wolfram Apha method
+float s[4][1]= {0,0,0,0};    //speed to be appied for each motor
+float v1=2, v2=3, v3=4;    //v1 , v2 and v3 are attached to pin no 2,3 and 4 respectively
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(v1,INPUT);     //v1 is set for OUTPUT
+  pinMode(v2,INPUT);     //v2 is set for OUTPUT
+  pinMode(v3,INPUT);     //v3 is set for OUTPUT
+  Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  v[0][0]=digitalRead(v1);   //input is taken by joystick or PS controller connected to the digital pins
+  v[1][0]=digitalRead(v2);
+  v[2][0]=digitalRead(v3);
+
+  for (int i=0; i<4 ;i++)     //the value of speed matrix it updated with each input
+  {
+   for(int j=0 ; j<1 ;j++)
+   {
+    for(int k=0 ; k<3 ; k++)
+    s[i][j]+=M[i][k]*v[k][i];   //speed matrix = inverse matrix (M) * velocity matrix(accepted by user)
+   }
+  }
+  Serial.print("Matrix = ");   //to print the value of the output speed matrix
+  for(int x=0; x<4 ; x++)
+  {
+   for(int y=0; y<1; y++)
+   Serial.print(s[x][y]); 
+  }
+  delay(1000);             //gives a pause for 1000 milliseconds
+}

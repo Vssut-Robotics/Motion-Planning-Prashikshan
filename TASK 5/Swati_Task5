@@ -1,0 +1,72 @@
+#define leftCenterSensor 34
+#define leftFarSensor 30
+#define rightCenterSensor 36
+#define rightFarSensor 40
+int leftCenterReading;
+int leftFarReading;
+int rightCenterReading;
+int rightFarReading;
+
+int Count = 0;   //to count the value for which sensor remains on the node
+int C = 0;   //to count no of times the value of Count variabe changes
+
+
+void setup(){   //sets all the sensors for input
+
+ pinMode(leftCenterSensor, INPUT);
+ pinMode(leftFarSensor, INPUT);
+ pinMode(rightCenterSensor, INPUT);
+ pinMode(rightFarSensor, INPUT);
+}
+
+void loop()
+{
+  readSensors();    //takes sensor reading
+Count=0;          //reinicializes count to 0
+if(leftFarReading==1 && rightFarReading==1 &&
+ (leftCenterReading==0 || rightCenterReading==0) )   //only central sensors give positive reading (Straight path ) 
+ {
+ print("Straight Path");   //it will move in the straight path
+ }
+ else{
+ Count_Nodes();    //there is a node and its value is calculated 
+ if (Count !=0 )
+ { C++;    //increases by 1 if count value is changed
+ print("No of Nodes = ",C);   //prints the no of nodes present
+ }
+ delay(1000);     //gives a pause for the bot to react
+}
+
+void readSensors(){    //takes all the sensor reading
+
+ leftCenterReading = digitalRead(leftCenterSensor);
+ leftFarReading = digitalRead(leftFarSensor);
+ rightCenterReading = digitalRead(rightCenterSensor);
+ rightFarReading = digitalRead(rightFarSensor);
+}
+void Count_Nodes(){
+  readSensors();
+ 
+ if( leftFarReading==0 && rightFarReading==0 && (leftCenterReading==0 || rightCenterReading==0))  //this is a node (extended all four sides)
+  Count=++;
+
+  //a function to turn either right or left is called 
+  
+  readSensors();
+  if(leftFarReading==0 || rightFarReading==0 && (leftCenterReading==0 || rightCenterReading==0) )  //this is a node (entended two perpendicular sides)
+  { Count=++;
+     if (leftFarReading == 0)
+     //turn left
+     else
+     //turn right
+   }
+
+   readSensors();
+ if(leftFarReading==1 && rightFarReading==1 && (leftCenterReading==0 || rightCenterReading==0))  //this is a node (extended in only one side)
+ { Count=++;
+   //a function to return back is called
+ }
+
+ }
+
+ 
